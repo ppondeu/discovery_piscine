@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <input type="text" id="left-operand">
+    <select id="calc">
+        <optgroup label="operator">
+            <option value="+" class="add">+</option>
+            <option value="-" class="sub">-</option>
+            <option value="*" class="mul">*</option>
+            <option value="/" class="divi">/</option>
+            <option value="%" class="mod">%</option>
+        </optgroup>
+    </select>
+    <input type="text" id="right-operand">
+    <input type="submit" value="Try me!" id="calculate-btn">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+
+        function isPositiveInteger(str) {
+            return str.length > 0 && /^[0-9]+$/.test(str);
+        }
+        function alertText() {
+            alert("Please, use me...");
+        }
+
+        const intervalId = setInterval(alertText, 30000);
+
+        $(document).ready(function () {
+            $("#calculate-btn").click(function () {
+                const leftOP = $("#left-operand").val();
+                const rightOP = $("#right-operand").val();
+                const op = $("#calc").val();
+
+                if (!(isPositiveInteger(leftOP) && isPositiveInteger(rightOP))) {
+                    alert("Error :(");
+
+                } else if ((op === "%" || op === "/") && parseInt(rightOP) === 0) {
+                    alert("It’s over 9000!");
+                    console.log("It’s over 9000!");
+                } else {
+                    console.log(typeof leftOP + " " + typeof rightOP + " " + typeof op);
+                    console.log("leftOP: " + leftOP + " rightOP: " + rightOP + " op: " + op);
+                    let result;
+                    switch (op) {
+                        case "+":
+                            result = parseInt(leftOP) + parseInt(rightOP);
+                            break;
+                        case "-":
+                            result = parseInt(leftOP) - parseInt(rightOP);
+                            break;
+                        case "*":
+                            result = parseInt(leftOP) * parseInt(rightOP);
+                            break;
+                        case "/":
+                            result = parseInt(leftOP) / parseInt(rightOP);
+                            break;
+                        case "%":
+                            result = parseInt(leftOP) % parseInt(rightOP);
+                            break;
+                    }
+                    console.log(result);
+                    alert(result);
+                }
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>

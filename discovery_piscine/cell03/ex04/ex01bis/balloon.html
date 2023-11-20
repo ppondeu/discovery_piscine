@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .balloon {
+            box-sizing: border-box;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="balloon"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+
+        const minRadius = 200;
+        const maxRadius = 420;
+        const balloon = $(".balloon");
+        $(document).ready(function () {
+            balloon.on({
+                click: function () {
+                    var curRadius = balloon.width();
+                    var curColor = balloon.css("background-color");
+
+                    if (curRadius + 10 <= maxRadius) {
+                        balloon.width(curRadius + 10);
+                        balloon.height(curRadius + 10);
+                    } else {
+                        balloon.width(minRadius);
+                        balloon.height(minRadius);
+                    }
+                    if (curColor == "rgb(255, 0, 0)") {
+                        balloon.css("background-color", "rgb(0, 255, 0)");
+                    } else if (curColor == "rgb(0, 255, 0)") {
+                        balloon.css("background-color", "rgb(0, 0, 255)");
+                    } else if (curColor == "rgb(0, 0, 255)") {
+                        balloon.css("background-color", "rgb(255, 0, 0)");
+                    }
+                },
+
+                mouseleave: function () {
+                    var curRadius = balloon.width();
+                    var curColor = balloon.css("background-color");
+                    if (curRadius - 5 >= minRadius) {
+                        balloon.width(curRadius - 5);
+                        balloon.height(curRadius - 5);
+                    }
+                    if (curColor == "rgb(255, 0, 0)") {
+                        balloon.css("background-color", "rgb(0, 0, 255)");
+                    } else if (curColor == "rgb(0, 0, 255)") {
+                        balloon.css("background-color", "rgb(0, 255, 0)");
+                    } else if (curColor == "rgb(0, 255, 0)") {
+                        balloon.css("background-color", "rgb(255, 0, 0)");
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

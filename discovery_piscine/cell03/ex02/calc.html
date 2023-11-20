@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <input type="text" id="left-operand">
+    <select id="calc">
+        <optgroup label="operator">
+            <option value="+" class="add">+</option>
+            <option value="-" class="sub">-</option>
+            <option value="*" class="mul">*</option>
+            <option value="/" class="divi">/</option>
+            <option value="%" class="mod">%</option>
+        </optgroup>
+    </select>
+    <input type="text" id="right-operand">
+    <input type="submit" value="Try me!" onclick="calculate()">
+    
+    <script>
+        function alertText() {
+                alert("Please, use me...")
+            };
+        const intervalId = setInterval(alertText, 30000);
+        const selector = document.querySelector("#calc");
+        
+        function calculate(){
+            const leftOP = document.querySelector('#left-operand').value;
+            const rightOP = document.querySelector('#right-operand').value;
+            var op = selector.value;
+            
+            if( (isPositiveInteger(leftOP) == false)  ||  (isPositiveInteger(rightOP) == false) ){
+                alert("Error :(");
+
+            }
+            else if( (op == "%" || op =="/" )&& rightOP == "0"){
+                alert("It’s over 9000!");
+            
+            }
+            else{
+                if(op == "+"){
+                    console.log(parseInt(leftOP) + parseInt(rightOP));
+                    alert(parseInt(leftOP) + parseInt(rightOP));
+                }
+                else if(op == "-"){
+                    console.log(parseInt(leftOP) - parseInt(rightOP));
+                    alert(parseInt(leftOP) - parseInt(rightOP));
+                }
+                else if(op == "*"){
+                    console.log(parseInt(leftOP) * parseInt(rightOP));
+                    alert(parseInt(leftOP) * parseInt(rightOP));
+                }
+                else if(op == "/"){
+                    console.log(parseInt(leftOP) / parseInt(rightOP));
+                    alert(parseInt(leftOP) / parseInt(rightOP));
+                }
+                else if(op == "%"){
+                    console.log(parseInt(leftOP) % parseInt(rightOP));
+                    alert(parseInt(leftOP) % parseInt(rightOP));
+                }
+            }
+        };
+        function isPositiveInteger(str){
+            if(str.length == 0){
+                return false;
+            }
+            var flag = true;
+            for(let i = 0; i < str.length; i++){
+                if(!(str[i] >= 0 && str[i] <= 9)){
+                    flag = false;
+                    break;
+                } 
+            }
+            return flag;
+        }   
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .balloon{
+            box-sizing: border-box;
+            width:200px;
+            height:200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon"></div>
+    <script>
+        const balloon = document.querySelector('.balloon');
+        const minRadius = 200;
+        const maxRadius = 420;
+        // order : red -> green -> blue
+
+        balloon.addEventListener("click", (e) => {
+            var curRadius = balloon.offsetWidth;
+            var curColor = window.getComputedStyle(balloon).backgroundColor;
+            if(curRadius + 10 <= maxRadius){
+                balloon.style.width = curRadius + 10 + 'px';
+                balloon.style.height = curRadius + 10 + 'px';
+            }
+            else{
+                balloon.style.width = minRadius + 'px';
+                balloon.style.height = minRadius + 'px';
+            }
+            if(curColor == "rgb(255, 0, 0)"){
+                balloon.style.backgroundColor = "rgb(0, 255, 0)";
+            }
+            else if(curColor == "rgb(0, 255, 0)"){
+                balloon.style.backgroundColor = "rgb(0, 0, 255)";
+            }
+            else if(curColor == "rgb(0, 0, 255)"){
+                balloon.style.backgroundColor = "rgb(255, 0, 0)";
+            }
+        });
+
+        balloon.addEventListener("mouseleave", (e) =>{
+            var curRadius = balloon.offsetWidth;
+            var curColor = window.getComputedStyle(balloon).backgroundColor;
+            if(curRadius - 5 >= minRadius){
+                balloon.style.width = curRadius - 5 + 'px';
+                balloon.style.height = curRadius - 5 + 'px';
+            }
+            if(curColor == "rgb(255, 0, 0)"){
+                balloon.style.backgroundColor = "rgb(0, 0, 255)";
+            }
+            else if(curColor == "rgb(0, 0, 255)"){
+                balloon.style.backgroundColor = "rgb(0, 255, 0)";
+            }
+            else if(curColor == "rgb(0, 255, 0)"){
+                balloon.style.backgroundColor = "rgb(255, 0, 0)";
+            }
+        });
+
+    </script>
+</body>
+</html>
